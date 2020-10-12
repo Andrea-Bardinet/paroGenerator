@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "paro.h"
 
 
 
@@ -20,12 +21,34 @@ int main(int argc, char const *argv[])
 		exit(1);
 	}
 
-	char mot[50];
+	unsigned char mot[50];
+	unsigned char car[500];
+	int nbCar = 0;
+	Booleen vu;
+
+	for(int i=0;i<500;i++){
+		car[i] = '0';
+	}
 
 	do{
 		fscanf(dico,"%s",mot);
-		printf("%s\n",mot );
+		for(int i=0;mot[i]!='\0';i++){
+			vu=Faux;
+			for(int j=0;j<500;j++){
+				if(mot[i] == car[j]){
+					vu = Vrai;
+				}
+			}
+			if(!vu){
+				car[nbCar] = mot[i];
+				nbCar++;
+				printf("%c\n",mot[i] );
+			}
+		}
+
 	}while(!feof(dico));
+
+	printf("%d\n",nbCar );
 
 
 
