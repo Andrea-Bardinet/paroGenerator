@@ -9,16 +9,12 @@ os.system("clear")
 
 mot = sys.argv[1]
 phone = ""
-pMax = (int)(sys.argv[2])
-pMin = (int)(sys.argv[3])
+pMin = (int)(sys.argv[2])
+pMax = (int)(sys.argv[3])
 
 
-dico = open("dico")
+dico = open("python/dico")
 read_tsv = csv.reader(dico, delimiter="\t")
-
-
-
-print "Recherche: "+mot
 
 
 
@@ -39,17 +35,17 @@ if pMax > len(phone):
 if pMin > pMax:
 	pMin = pMax -1
 
+res = ""
 
-print "Précision: De "+str(pMax)+" à "+str(pMin)+"."
-print "------------------------------"
+
+
+
 for precision in xrange(pMax,pMin,-1):
-	print "Précision: "+(str)(precision)
-	print "------------------------------"
 	dico.seek(0, 0)
 	for row in read_tsv:	
 		if phone[-precision:] == row[1][-precision:]:
 			print row[0]
-	print "------------------------------"
-	
 
+	
+print res
 dico.close()
